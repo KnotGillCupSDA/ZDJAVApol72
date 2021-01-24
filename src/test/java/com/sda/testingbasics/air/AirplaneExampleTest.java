@@ -15,4 +15,14 @@ class AirplaneExampleTest {
 
         assertEquals(expectedHeight, airplane.getHeight());
     }
+
+    @Test
+    void thatWeCantGoBelowZero() {
+        Airplane airplane  = new Airplane();
+        airplane.ascent(100);
+
+        airplane.descent(200);
+
+        assertEquals(0, airplane.getHeight());
+    }
 }
