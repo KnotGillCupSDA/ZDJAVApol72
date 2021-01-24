@@ -18,16 +18,4 @@ public class Calculator {
         return a / b;
     }
 
-    public long factorial(int number) {
-
-        if(number > 10) {
-            throw new IllegalArgumentException("The number is too high");
-        }
-
-        if (number <= 1) {
-            return 1;
-        }
-
-        return number * factorial(number -1);
-    }
 }
