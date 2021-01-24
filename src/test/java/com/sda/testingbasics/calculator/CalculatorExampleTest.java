@@ -9,11 +9,12 @@ class CalculatorExampleTest {
 
     @Test
     void thatWeCanAddTwoPositiveNumbers() {
+
         //given
         Calculator calculator = new Calculator();
-        double a = 2.0;
-        double b = 3.0;
-        double expected = 5.0;
+        double a = 5.0;
+        double b = 6.0;
+        double expected = 11.0;
 
         //when
         double sum = calculator.add(a, b);
