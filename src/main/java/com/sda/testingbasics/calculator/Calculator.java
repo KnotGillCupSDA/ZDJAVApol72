@@ -18,4 +18,14 @@ public class Calculator {
         return a / b;
     }
 
+    public int factorial(int number) {
+        if (number >= 100) {
+            throw new IllegalArgumentException();
+        }
+        if(number <= 1) {
+            return 1;
+        }
+
+        return number * factorial(number - 1);
+    }
 }
