@@ -8,10 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CalculatorExampleTest {
 
     @Test
-    void thatWeCanAddTwoPositiveNumbers(double a, double b, double expected) {
+    void thatWeCanAddTwoPositiveNumbers() {
 
         //given
         Calculator calculator = new Calculator();
+        double a = 5.0;
+        double b = 6.0;
+        double expected = 11.0;
 
         //when
         double sum = calculator.add(a, b);
