@@ -1,8 +1,6 @@
 package com.sda.testingbasics.db;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CustomerDaoImpl implements CustomerDao {
 
@@ -23,7 +21,7 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public Collection<Customer> getAll() {
-        return customers.values();
+    public List<Customer> getAll() {
+        return new ArrayList<>(customers.values());
     }
 }

@@ -1,6 +1,7 @@
 package com.sda.testingbasics.db;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface CustomerDao {
 
@@ -24,5 +25,5 @@ public interface CustomerDao {
      *
      * @return an unsorted collection of customers or an empty list
      */
-    Collection<Customer> getAll();
+    List<Customer> getAll();
 }

@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
+import java.util.List;
 
 class CustomerDaoExampleTest {
 
@@ -15,7 +16,7 @@ class CustomerDaoExampleTest {
 
         dao.add(tomek);
 
-        Collection<Customer> all = dao.getAll();
+        List<Customer> all = dao.getAll();
 
         /*Assertions.assertNotNull(all);
         Assertions.assertFalse(all.isEmpty());
