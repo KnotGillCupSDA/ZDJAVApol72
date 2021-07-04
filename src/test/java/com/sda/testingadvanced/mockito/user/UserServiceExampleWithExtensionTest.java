@@ -30,11 +30,14 @@ class UserServiceExampleWithExtensionTest {
 				.thenReturn(
 						Optional.of(new User(4L, "Tomasz", "Wozniak")));
 
+		Mockito.lenient().when(userRepository.findById(5L)).thenReturn(Optional.empty());
+
 		final User userById = userService.getUserById(4L);
 
 		System.out.println(userById);
 		assertNotNull(userById);
 
 		Mockito.verify(userRepository, Mockito.times(1)).findById(4L);
+		Mockito.verifyNoInteractions(userValidator);
 	}
 }
