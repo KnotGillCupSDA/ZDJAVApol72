@@ -2,7 +2,7 @@ package com.sda.testingadvanced.parameters;
 
 public class DivisibilityChecker {
 
-	public boolean isDivisibleBy3() {
+	public static boolean isDivisibleBy3(int number) {
 		return false;
 	}
 
