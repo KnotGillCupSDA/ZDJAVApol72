@@ -18,6 +18,6 @@ public class UserService {
 		if (userValidator.isUserValid(user)) {
 			return userRepository.addUser(user);
 		}
-		throw new IllegalArgumentException("User is invalid");
+		throw new IllegalArgumentException("User "+ user +" is invalid");
 	}
 }

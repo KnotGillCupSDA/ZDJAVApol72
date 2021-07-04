@@ -3,10 +3,12 @@ package com.sda.testingadvanced.mockito.user;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 import java.util.Optional;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -56,5 +58,35 @@ class UserServiceExampleWithExtensionTest {
 		//then
 		assertFalse(byId.isEmpty());
 		assertEquals(user, byId.get());
+	}
+
+	@Test
+	void shouldAddValidUser() {
+		//given
+		final User user = new User(7L, "MockedName", "MockedLastName");
+		when(userValidator.isUserValid(user)).thenReturn(true);
+		when(userRepository.addUser(user)).thenReturn(user);
+
+		//when
+		final User addedUser = userService.addUser(user);
+
+		//then
+		assertNotNull(addedUser);
+		assertEquals(user, addedUser);
+	}
+
+	@Test
+	void shouldThrowsExceptionForInvalidUser() {
+		//given
+		final long id = 7L;
+		final User user = new User(id, "MockedName", "MockedLastName");
+		when(userValidator.isUserValid(user)).thenReturn(false);
+
+		//when, then
+		Assertions.assertThatExceptionOfType(IllegalArgumentException.class)
+				.isThrownBy(() -> userService.addUser(user))
+				.withMessageContaining(String.valueOf(id));
+
+		Mockito.verifyNoInteractions(userRepository);
 	}
 }
