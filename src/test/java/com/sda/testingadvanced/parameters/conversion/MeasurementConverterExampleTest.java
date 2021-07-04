@@ -1,5 +1,6 @@
 package com.sda.testingadvanced.parameters.conversion;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
@@ -19,8 +20,10 @@ class MeasurementConverterExampleTest {
 
 	@ParameterizedTest
 	@EnumSource
-	void shouldConvertToValuesBelowIntegerMax(ConversionType conversionType) {
-		assertTrue(measurementConverter.convert(10.0, conversionType) < Integer.MAX_VALUE);
+	void shouldAlwaysConvertToDoubleWithinBoundaries(ConversionType conversionType) {
+		assertTrue(measurementConverter.convert(10.0, conversionType) < Double.MAX_VALUE);
+		assertTrue(measurementConverter.convert(10.0, conversionType) > Double.MIN_VALUE);
+		assertNotEquals(Double.NaN, measurementConverter.convert(10.0, conversionType));
 	}
 
 	@ParameterizedTest
