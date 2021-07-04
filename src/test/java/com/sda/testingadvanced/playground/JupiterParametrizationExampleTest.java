@@ -90,7 +90,7 @@ public class JupiterParametrizationExampleTest {
 	}
 
 	/*
-	 * CvsSource
+	 * CsvSource
 	 */
 	private static class Strings {
 
