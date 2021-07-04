@@ -2,12 +2,14 @@ package com.sda.testingadvanced.parameters.conversion;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -51,5 +53,12 @@ class MeasurementConverterExampleTest {
 				Arguments.of(ConversionType.KILOMETERS_TO_MILES, ConversionType.MILES_TO_KILOMETERS),
 				Arguments.of(ConversionType.METERS_TO_YARDS, ConversionType.YARDS_TO_METERS)
 		);
+	}
+
+	@ParameterizedTest
+	@EnumSource
+	void shouldThrowExceptionForNegativeNumbers(ConversionType conversionType) {
+		assertThrows(IllegalArgumentException.class,
+				() -> measurementConverter.convert(-3.0, conversionType));
 	}
 }
