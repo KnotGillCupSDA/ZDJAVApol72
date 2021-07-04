@@ -20,25 +20,27 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class JupiterParametrizationTest {
+public class JupiterParametrizationExampleTest {
 
 	/*
 	 *	ValueSource
 	 */
-	@ParameterizedTest
-	@ValueSource(doubles = { 1, 2.3, 4.1 })
+	@ParameterizedTest(name = "Passing double value: {arguments}")
+	@ValueSource(doubles = { 1, 2.3, 4.1, 5.5 })
 	void shouldPassDoubleToParam(double param) {
+		System.out.println("passed value: "+ param);
 	}
 
-	@ParameterizedTest
-	@ValueSource(strings = { "Ala", "ma", "kota" })
+	@ParameterizedTest(name = "run #{index} with [{arguments}]")
+	@ValueSource(strings = { "Ala", "ma", "kota", "." })
 	void shouldPassStringToTest(String word) {
+		System.out.println("passed word: "+ word);
 	}
 
 	@ParameterizedTest
 	@ValueSource(classes = { String.class, Integer.class, Double.class })
 	void shouldPassClassTypeAsParam(Class<?> clazz) {
-
+		System.out.println("passed class: "+ clazz.getSimpleName());
 	}
 
 	@ParameterizedTest
