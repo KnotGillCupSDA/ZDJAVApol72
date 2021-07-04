@@ -44,4 +44,12 @@ class MeasurementConverterExampleTest {
 		final double intermediate = measurementConverter.convert(value, c1);
 		assertEquals(value, measurementConverter.convert(intermediate, c2));
 	}
+
+	private static Stream<Arguments> reversibleOperators() {
+		return Stream.of(
+				Arguments.of(ConversionType.CENTIMETERS_TO_INCHES, ConversionType.INCHES_TO_CENTIMETERS),
+				Arguments.of(ConversionType.KILOMETERS_TO_MILES, ConversionType.MILES_TO_KILOMETERS),
+				Arguments.of(ConversionType.METERS_TO_YARDS, ConversionType.YARDS_TO_METERS)
+		);
+	}
 }
