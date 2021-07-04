@@ -70,7 +70,7 @@ public class JupiterParametrizationExampleTest {
 	}
 
 	@ParameterizedTest
-	@EnumSource(TemperatureConverter.class)
+	@EnumSource
 	void shouldConvertToValueHigherThanMinInteger(TemperatureConverter converter) {
 		assertTrue(converter.convertTemp(10) > Integer.MIN_VALUE);
 	}
