@@ -31,7 +31,10 @@ class UserServiceExampleWithExtensionTest {
 						Optional.of(new User(4L, "Tomasz", "Wozniak")));
 
 		final User userById = userService.getUserById(4L);
+
 		System.out.println(userById);
 		assertNotNull(userById);
+
+		Mockito.verify(userRepository, Mockito.times(1)).findById(4L);
 	}
 }
