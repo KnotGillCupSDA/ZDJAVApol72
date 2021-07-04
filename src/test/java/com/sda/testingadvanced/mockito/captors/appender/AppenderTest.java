@@ -20,11 +20,17 @@ class AppenderTest {
 	ArgumentCaptor<String> stringArgumentCaptor;
 
 	@Test
-	void shouldAppend() {
+	void shouldAppendSuffix() {
+		//given
+		final String message = "aaa";
+		final Appender appender = new Appender(receiver, "---");
 		doNothing().when(receiver).accept(stringArgumentCaptor.capture());
-		Appender appender = new Appender(receiver, "bbb");
-		appender.append("aaa");
 
-		assertEquals("aaabbb", stringArgumentCaptor.getValue());
+		//when
+		appender.append(message);
+
+		//then
+		assertEquals("aaa---", stringArgumentCaptor.getValue());
+
 	}
 }
