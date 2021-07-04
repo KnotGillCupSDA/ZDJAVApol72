@@ -1,13 +1,17 @@
 package com.sda.testingadvanced.parameters.conversion;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Random;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class MeasurementConverterExampleTest {
 
@@ -31,5 +35,13 @@ class MeasurementConverterExampleTest {
 	void shouldConvertToHigherValue(ConversionType conversionType) {
 		final int value = new Random().nextInt(1000);
 		assertTrue(measurementConverter.convert(value, conversionType) > value);
+	}
+
+	@ParameterizedTest
+	@MethodSource("reversibleOperators")
+	void someOperationsShouldBeReversible(ConversionType c1, ConversionType c2) {
+		final double value = 10.0;
+		final double intermediate = measurementConverter.convert(value, c1);
+		assertEquals(value, measurementConverter.convert(intermediate, c2));
 	}
 }
